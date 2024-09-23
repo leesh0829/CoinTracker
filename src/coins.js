@@ -27,7 +27,6 @@ function Coins() {
       copyRecentCoins.map((item) => {
         if (item.id === coins[coin].id) duplicate++;
       });
-    console.log(duplicate);
     if (duplicate < 1) {
       copyRecentCoins.unshift(coins[coin]);
       copyRecentCoins.pop();
