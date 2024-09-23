@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Coins from "./coins.js";
 import Home from "./home.tsx";
 import Details from "./Details.js";
