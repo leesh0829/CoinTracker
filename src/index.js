@@ -8,7 +8,7 @@ const container = document.getElementById("root");
 const root = createRoot(container); // createRoot 사용
 
 root.render(
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <App />
   </Router>
 );
