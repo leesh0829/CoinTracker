@@ -9,6 +9,7 @@ function Coins() {
   let [recentCoins, setRecentCoins] = useState(
     JSON.parse(localStorage.getItem("recentCoin")) || [0, 0, 0, 0, 0]
   );
+  let duplicate = 0;
 
   useEffect(() => {
     fetch("https://api.coinpaprika.com/v1/tickers")
@@ -21,11 +22,20 @@ function Coins() {
 
   function findRecentCoin(coin) {
     let copyRecentCoins = [...recentCoins];
-    copyRecentCoins.unshift(coins[coin]);
-    copyRecentCoins.pop();
-    setRecentCoins([copyRecentCoins]);
-    recentCoins = copyRecentCoins;
-    localStorage.setItem("recentCoin", JSON.stringify(recentCoins));
+    //if (!copyRecentCoins.id.includes(coin.id))
+    copyRecentCoins !== null &&
+      copyRecentCoins.map((item) => {
+        if (item.id === coins[coin].id) duplicate++;
+      });
+    console.log(duplicate);
+    if (duplicate < 1) {
+      copyRecentCoins.unshift(coins[coin]);
+      copyRecentCoins.pop();
+      setRecentCoins([copyRecentCoins]);
+      recentCoins = copyRecentCoins;
+      localStorage.setItem("recentCoin", JSON.stringify(recentCoins));
+    }
+    duplicate = 0;
   }
 
   function removeRecent() {
